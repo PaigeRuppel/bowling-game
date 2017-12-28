@@ -22,8 +22,16 @@ public class Game {
     public int getScoreForFrame(int frame) {
         int scoreForFrame = 0;
         for (int ball = 0; ball < currentThrow && frame > 0; ball+=2, frame--) {
-            scoreForFrame += gameThrows[ball] + gameThrows[ball + 1];
+            if (isAStrike(ball)) {
+                scoreForFrame += gameThrows[ball] + gameThrows[ball + 1] + gameThrows[ball + 2];
+            } else {
+                scoreForFrame += gameThrows[ball] + gameThrows[ball + 1];
+            }
         }
         return scoreForFrame;
+    }
+
+    private boolean isAStrike(int ball) {
+        return gameThrows[ball] + gameThrows[ball + 1] == 10;
     }
 }
