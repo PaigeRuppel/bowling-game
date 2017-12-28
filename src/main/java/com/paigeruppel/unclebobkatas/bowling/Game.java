@@ -3,18 +3,12 @@ package com.paigeruppel.unclebobkatas.bowling;
 public class Game {
 
 
-    private int score;
-    private int currentThrow;
+    private ScoreKeeper scorer = new ScoreKeeper();
     private boolean isFirstThrow = true;
     private int currentFrame = 0;
 
-
-    private static int MAX_THROWS = 21; // 2 throws for first 9 frames, 3 throws for 10th frame
-
-    private int[] gameThrows = new int[MAX_THROWS];
-
     public void throwBall(int pins) {
-        gameThrows[currentThrow++] = pins;
+        scorer.addThrow(pins);
         adjustCurrentFrame(pins);
     }
 
@@ -40,34 +34,8 @@ public class Game {
     }
 
     public int getScore() {
-        return getScoreForFrame(currentFrame);
+        return scorer.getScoreForFrame(currentFrame);
     }
 
-    private int ball = 0;
 
-    public int getScoreForFrame(int frame) {
-        score = 0;
-        ball = 0;
-        for (int f = 0; f < frame; f++) {
-            if (isAStrike()) {
-                ball++;
-                score += 10 + gameThrows[ball] + gameThrows[ball+1];
-            } else if (isASpare()) {
-                ball += 2;
-                score += 10 + gameThrows[ball];
-            } else {
-                score += gameThrows[ball] + gameThrows[ball+1];
-                ball += 2;
-            }
-        }
-        return score;
-    }
-
-    private boolean isAStrike() {
-        return gameThrows[ball] == 10;
-    }
-
-    private boolean isASpare() {
-        return gameThrows[ball] + gameThrows[ball + 1] == 10;
-    }
 }

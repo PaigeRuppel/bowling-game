@@ -35,16 +35,7 @@ public class GameTest {
         assertThat(underTest.getScore(), is(17));
     }
 
-    @Test
-    public void shouldReturnScoreForFirstAndSecondSimpleFrames() {
-        underTest.throwBall(4);
-        underTest.throwBall(5);
-        underTest.throwBall(7);
-        underTest.throwBall(1);
-        assertThat(underTest.getCurrentFrame(), is(2));
-        assertThat(underTest.getScoreForFrame(1), is(9));
-        assertThat(underTest.getScoreForFrame(2), is(17));
-    }
+
 
     @Test
     public void shouldReturnScoreForSecondFrameWithSpareInFirstFrame() {
@@ -53,7 +44,7 @@ public class GameTest {
         underTest.throwBall(7);
         underTest.throwBall(1);
         assertThat(underTest.getCurrentFrame(), is(2));
-        assertThat(underTest.getScoreForFrame(2), is(25));
+        assertThat(underTest.getScore(), is(25));
     }
 
     @Test
@@ -72,7 +63,7 @@ public class GameTest {
         underTest.throwBall(7);
         underTest.throwBall(1);
         assertThat(underTest.getCurrentFrame(), is(2));
-        assertThat(underTest.getScoreForFrame(2), is(26));
+        assertThat(underTest.getScore(), is(26));
     }
 
     @Test
@@ -83,7 +74,7 @@ public class GameTest {
         underTest.throwBall(3);
         underTest.throwBall(2);
         assertThat(underTest.getCurrentFrame(), is(3));
-        assertThat(underTest.getScoreForFrame(3), is(38));
+        assertThat(underTest.getScore(), is(38));
     }
 
     @Test
