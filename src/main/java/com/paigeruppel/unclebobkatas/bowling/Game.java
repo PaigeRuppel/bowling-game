@@ -5,6 +5,7 @@ public class Game {
 
     private int score;
     private int currentThrow;
+    private int currentFrame;
     private int ball;
 
     private static int MAX_THROWS = 21; // 2 throws for first 9 frames, 3 throws for 10th frame
@@ -13,11 +14,12 @@ public class Game {
 
     public void add(int pins) {
         gameThrows[currentThrow++] = pins;
+        currentFrame = currentThrow / 2;
         score += pins;
     }
 
     public int getScore() {
-        return score;
+        return getScoreForFrame(currentFrame);
     }
 
     public int getScoreForFrame(int frame) {

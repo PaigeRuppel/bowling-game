@@ -44,12 +44,22 @@ public class GameTest {
     }
 
     @Test
-    public void shouldReturnScoreWithStrikeInFirstFrame() {
+    public void shouldReturnScoreForSecondFrameWithStrikeInFirstFrame() {
         underTest = new Game();
         underTest.add(4);
         underTest.add(6);
         underTest.add(7);
         underTest.add(1);
         assertThat(underTest.getScoreForFrame(2), is(25));
+    }
+
+    @Test
+    public void shouldReturnGameScoreWithStrikeInFirstFrame() {
+        underTest = new Game();
+        underTest.add(4);
+        underTest.add(6);
+        underTest.add(7);
+        underTest.add(1);
+        assertThat(underTest.getScore(), is(25));
     }
 }
