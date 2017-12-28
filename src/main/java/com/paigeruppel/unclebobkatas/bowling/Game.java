@@ -18,6 +18,10 @@ public class Game {
         score += pins;
     }
 
+    public int getCurrentFrame() {
+        return currentFrame;
+    }
+
     public int getScore() {
         return getScoreForFrame(currentFrame);
     }
@@ -28,7 +32,9 @@ public class Game {
             int firstThrow = gameThrows[ball];
             int secondThrow = gameThrows[ball + 1];
             int frameScore = firstThrow + secondThrow;
-            if (isASpare()) {
+            if (firstThrow == 10) {
+                score += frameScore + gameThrows[ball+2] + gameThrows[ball+3];
+            } else if (isASpare()) {
                 score += frameScore + gameThrows[ball + 2];
             } else {
                 score += frameScore;

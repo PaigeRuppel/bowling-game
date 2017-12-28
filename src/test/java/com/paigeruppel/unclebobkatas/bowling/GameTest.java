@@ -19,6 +19,7 @@ public class GameTest {
         underTest = new Game();
         underTest.add(4);
         underTest.add(5);
+        assertThat(underTest.getCurrentFrame(), is(1));
         assertThat(underTest.getScore(), is(9));
     }
 
@@ -29,6 +30,7 @@ public class GameTest {
         underTest.add(5);
         underTest.add(7);
         underTest.add(1);
+        assertThat(underTest.getCurrentFrame(), is(2));
         assertThat(underTest.getScore(), is(17));
     }
 
@@ -39,27 +41,41 @@ public class GameTest {
         underTest.add(5);
         underTest.add(7);
         underTest.add(1);
+        assertThat(underTest.getCurrentFrame(), is(2));
         assertThat(underTest.getScoreForFrame(1), is(9));
         assertThat(underTest.getScoreForFrame(2), is(17));
     }
 
     @Test
-    public void shouldReturnScoreForSecondFrameWithStrikeInFirstFrame() {
+    public void shouldReturnScoreForSecondFrameWithSpareInFirstFrame() {
         underTest = new Game();
         underTest.add(4);
         underTest.add(6);
         underTest.add(7);
         underTest.add(1);
+        assertThat(underTest.getCurrentFrame(), is(2));
         assertThat(underTest.getScoreForFrame(2), is(25));
+    }
+
+    @Test
+    public void shouldReturnGameScoreWithSpareInFirstFrame() {
+        underTest = new Game();
+        underTest.add(4);
+        underTest.add(6);
+        underTest.add(7);
+        underTest.add(1);
+        assertThat(underTest.getCurrentFrame(), is(2));
+        assertThat(underTest.getScore(), is(25));
     }
 
     @Test
     public void shouldReturnGameScoreWithStrikeInFirstFrame() {
         underTest = new Game();
-        underTest.add(4);
-        underTest.add(6);
+        underTest.add(10);
+
         underTest.add(7);
         underTest.add(1);
-        assertThat(underTest.getScore(), is(25));
+        assertThat(underTest.getCurrentFrame(), is(2));
+        assertThat(underTest.getScoreForFrame(2), is(26));
     }
 }
