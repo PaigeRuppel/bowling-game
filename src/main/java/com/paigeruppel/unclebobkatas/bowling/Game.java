@@ -5,6 +5,7 @@ public class Game {
 
     private int score;
     private int currentThrow;
+    private int ball;
 
     private static int MAX_THROWS = 21; // 2 throws for first 9 frames, 3 throws for 10th frame
 
@@ -21,8 +22,8 @@ public class Game {
 
     public int getScoreForFrame(int frame) {
         int scoreForFrame = 0;
-        for (int ball = 0; ball < currentThrow && frame > 0; ball+=2, frame--) {
-            if (isAStrike(ball)) {
+        for (ball = 0; ball < currentThrow && frame > 0; ball+=2, frame--) {
+            if (isAStrike()) {
                 scoreForFrame += gameThrows[ball] + gameThrows[ball + 1] + gameThrows[ball + 2];
             } else {
                 scoreForFrame += gameThrows[ball] + gameThrows[ball + 1];
@@ -31,7 +32,7 @@ public class Game {
         return scoreForFrame;
     }
 
-    private boolean isAStrike(int ball) {
+    private boolean isAStrike() {
         return gameThrows[ball] + gameThrows[ball + 1] == 10;
     }
 }
