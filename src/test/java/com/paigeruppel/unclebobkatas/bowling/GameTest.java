@@ -15,8 +15,20 @@ public class GameTest {
     private Game underTest;
 
     @Test
-    public void shouldReturnScoreAfterOneThrow() {
+    public void shouldReturnScoreAfterOneSimpleFrame() {
         underTest = new Game();
-        assertThat(underTest.getScore(9), is(9));
+        underTest.add(4);
+        underTest.add(5);
+        assertThat(underTest.getScore(), is(9));
+    }
+
+    @Test
+    public void shouldReturnScoreAfterTwoSimpleFrames() {
+        underTest = new Game();
+        underTest.add(4);
+        underTest.add(5);
+        underTest.add(7);
+        underTest.add(1);
+        assertThat(underTest.getScore(), is(17));
     }
 }
