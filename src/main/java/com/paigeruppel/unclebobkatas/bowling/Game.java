@@ -29,6 +29,10 @@ public class Game {
             isFirstThrow = true;
             currentFrame++;
         }
+
+        if (currentFrame > 10) {
+            currentFrame = 10;
+        }
     }
 
     public int getCurrentFrame() {

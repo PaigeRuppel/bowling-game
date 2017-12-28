@@ -85,4 +85,13 @@ public class GameTest {
         assertThat(underTest.getCurrentFrame(), is(3));
         assertThat(underTest.getScoreForFrame(3), is(38));
     }
+
+    @Test
+    public void shouldReturnPerfectGame300() {
+        for (int i = 0; i <= 11; i++) {
+            underTest.throwBall(10);
+        }
+        assertThat(underTest.getCurrentFrame(), is(10));
+        assertThat(underTest.getScore(), is(300));
+    }
 }
