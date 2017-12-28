@@ -31,4 +31,25 @@ public class GameTest {
         underTest.add(1);
         assertThat(underTest.getScore(), is(17));
     }
+
+    @Test
+    public void shouldReturnScoreForFirstAndSecondSimpleFrames() {
+        underTest = new Game();
+        underTest.add(4);
+        underTest.add(5);
+        underTest.add(7);
+        underTest.add(1);
+        assertThat(underTest.getScoreForFrame(1), is(9));
+        assertThat(underTest.getScoreForFrame(2), is(17));
+    }
+
+//    @Test
+//    public void shouldReturnScoreWithStrikeInFirstFrame() {
+//        underTest = new Game();
+//        underTest.add(4);
+//        underTest.add(6);
+//        underTest.add(7);
+//        underTest.add(1);
+//        assertThat(underTest.getScore(), is(25));
+//    }
 }
