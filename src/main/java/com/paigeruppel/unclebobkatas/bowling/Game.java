@@ -23,18 +23,21 @@ public class Game {
     }
 
     public int getScoreForFrame(int frame) {
-        int scoreForFrame = 0;
+        int score = 0;
         for (ball = 0; ball < currentThrow && frame > 0; ball+=2, frame--) {
-            if (isAStrike()) {
-                scoreForFrame += gameThrows[ball] + gameThrows[ball + 1] + gameThrows[ball + 2];
+            int firstThrow = gameThrows[ball];
+            int secondThrow = gameThrows[ball + 1];
+            int frameScore = firstThrow + secondThrow;
+            if (isASpare()) {
+                score += frameScore + gameThrows[ball + 2];
             } else {
-                scoreForFrame += gameThrows[ball] + gameThrows[ball + 1];
+                score += frameScore;
             }
         }
-        return scoreForFrame;
+        return score;
     }
 
-    private boolean isAStrike() {
+    private boolean isASpare() {
         return gameThrows[ball] + gameThrows[ball + 1] == 10;
     }
 }
