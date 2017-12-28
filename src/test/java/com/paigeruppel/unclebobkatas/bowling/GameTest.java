@@ -74,4 +74,15 @@ public class GameTest {
         assertThat(underTest.getCurrentFrame(), is(2));
         assertThat(underTest.getScoreForFrame(2), is(26));
     }
+
+    @Test
+    public void shouldReturnGameScoreWithStrikeFollowedBySpare() {
+        underTest.throwBall(10);
+        underTest.throwBall(4);
+        underTest.throwBall(6);
+        underTest.throwBall(3);
+        underTest.throwBall(2);
+        assertThat(underTest.getCurrentFrame(), is(3));
+        assertThat(underTest.getScoreForFrame(3), is(38));
+    }
 }
