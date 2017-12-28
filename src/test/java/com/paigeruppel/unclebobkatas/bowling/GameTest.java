@@ -94,4 +94,38 @@ public class GameTest {
         assertThat(underTest.getCurrentFrame(), is(10));
         assertThat(underTest.getScore(), is(300));
     }
+
+    @Test
+    public void shouldReturnScore299() {
+        for (int i = 0; i < 11; i++) {
+            underTest.throwBall(10);
+        }
+        underTest.throwBall(9);
+        assertThat(underTest.getCurrentFrame(), is(10));
+        assertThat(underTest.getScore(), is(299));
+    }
+
+    @Test
+    public void shouldReturnScore133SampleGame1() {
+        underTest.throwBall(1);
+        underTest.throwBall(4);
+        underTest.throwBall(4);
+        underTest.throwBall(5);
+        underTest.throwBall(6);
+        underTest.throwBall(4);
+        underTest.throwBall(5);
+        underTest.throwBall(5);
+        underTest.throwBall(10);
+        underTest.throwBall(0);
+        underTest.throwBall(1);
+        underTest.throwBall(7);
+        underTest.throwBall(3);
+        underTest.throwBall(6);
+        underTest.throwBall(4);
+        underTest.throwBall(10);
+        underTest.throwBall(2);
+        underTest.throwBall(8);
+        underTest.throwBall(6);
+        assertThat(underTest.getScore(), is(133));
+    }
 }
