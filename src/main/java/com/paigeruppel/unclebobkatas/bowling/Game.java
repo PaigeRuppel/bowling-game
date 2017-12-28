@@ -43,32 +43,31 @@ public class Game {
         return getScoreForFrame(currentFrame);
     }
 
+    private int ball = 0;
+
     public int getScoreForFrame(int frame) {
-        int score = 0;
-        int ball = 0;
+        score = 0;
+        ball = 0;
         for (int f = 0; f < frame; f++) {
-            int firstThrow = gameThrows[ball++];
-            if (firstThrow == 10) {
+            if (isAStrike()) {
+                ball++;
                 score += 10 + gameThrows[ball] + gameThrows[ball+1];
+            } else if (isASpare()) {
+                ball += 2;
+                score += 10 + gameThrows[ball];
             } else {
-                int secondThrow = gameThrows[ball++];
-                int frameScore = firstThrow + secondThrow;
-                if (frameScore == 10) {
-                    score += frameScore + gameThrows[ball];
-                } else {
-                    score += frameScore;
-                }
+                score += gameThrows[ball] + gameThrows[ball+1];
+                ball += 2;
             }
         }
         return score;
     }
 
-//    private boolean isAStrike() {
-//        return gameThrows[ball] == 10;
-//    }
-//
-//
-//    private boolean isASpare() {
-//        return gameThrows[ball] + gameThrows[ball + 1] == 10;
-//    }
+    private boolean isAStrike() {
+        return gameThrows[ball] == 10;
+    }
+
+    private boolean isASpare() {
+        return gameThrows[ball] + gameThrows[ball + 1] == 10;
+    }
 }
