@@ -97,6 +97,18 @@ public class GameTest {
     }
 
     @Test
+    public void shouldReturnScore270WithTenthFrameSpare() {
+        for (int i = 0; i < 9; i++) {
+            underTest.throwBall(10);
+        }
+        underTest.throwBall(9);
+        underTest.throwBall(1);
+        underTest.throwBall(1);
+        assertThat(underTest.getScore(), is(270));
+    }
+
+
+    @Test
     public void shouldReturnScore133SampleGame1() {
         underTest.throwBall(1);
         underTest.throwBall(4);
